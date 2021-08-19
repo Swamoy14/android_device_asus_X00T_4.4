@@ -77,34 +77,33 @@ vendor.audio.feature.usb_offload_burst_mode.enable=false
 vendor.audio.feature.usb_offload_sidetone_volume.enable=false
 vendor.audio.feature.vbat.enable=true
 vendor.audio.feature.wsa.enable=false
-ro.vendor.icepower.effect.enable=true
 
 # Bluetooth
-persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
 persist.bluetooth.disableabsvol=true
-persist.bluetooth.a2dp_offload.disabled=true
-persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxhd-aac
 persist.vendor.bt.aac_frm_ctl.enabled=true
 persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxhd-aac-ldac
 persist.vendor.qcom.bluetooth.enable.splita2dp=true
 ro.bluetooth.a2dp_offload.supported=false
-ro.vendor.bluetooth.wipower=false
 vendor.qcom.bluetooth.soc=cherokee
 
 # Camera
-persist.vendor.camera.dual.isp.sync=0
+persist.vendor.camera.eis.enable=1
 persist.vendor.camera.expose.aux=1
+persist.vendor.camera.is_type=5
 persist.vendor.camera.mpo.disabled=1
+persist.vendor.camera.preview.ubwc=0
 vendor.camera.aux.packagelist=org.codeaurora.snapcam
+vidc.enc.dcvs.extra-buff-count=2
 
 # Charger
 ro.charger.enable_suspend=true
 
 # Display
-vendor.display.disable_skip_validate=1
-vendor.gralloc.disable_ahardware_buffer=1
-vendor.video.disable.ubwc=1
 ro.opengles.version=196610
+vendor.display.disable_skip_validate=1
+vendor.display.enable_default_color_mode=1
+vendor.gralloc.enable_fb_ubwc=1
+vendor.video.disable.ubwc=1
 
 # FM
 vendor.hw.fm.init=0
@@ -118,19 +117,12 @@ ro.com.google.rlzbrandcode=ASUP
 
 # Media
 debug.stagefright.omx_default_rank=0
-vendor.vidc.enc.disable.pq=true
 vendor.vidc.dec.enable.downscalar=0
+vendor.vidc.enc.disable.pq=true
+vendor.vidc.enc.disable.pq=true
+vendor.vidc.enc.disable_bframes=1
 
-# Misc
-keyguard.no_require_sim=true
-persist.vendor.qcomsysd.enabled=1
-qemu.hw.mainkeys=0
-ro.additionalbutton.operation=0
-
-# NFC
-ro.hardware.nfc_nci=nqx.default
-
-# QTI
+# Perf
 ro.vendor.extension_library=libqti-perfd-client.so
 
 # Radio
@@ -138,28 +130,22 @@ persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
 persist.dbg.wfc_avail_ovr=1
 persist.rcs.supported=1
-ro.carrier=unknown
-ro.com.android.dataroaming=true
-ro.ril.ecclist=112,911
-ro.telephony.iwlan_operation_mode=legacy
-ro.telephony.use_old_mnc_mcc_format=true
-persist.radio.add_power_save=1
-persist.radio.data_con_rprt=1
-persist.radio.calls.on.ims=1
-persist.radio.aosp_usr_pref_sel=true
 persist.radio.multisim.config=dsds
-persist.vendor.qti.telephony.vt_cam_interface=1
 persist.sys.fflag.override.settings_network_and_internet_v2=true
-persist.vendor.radio.sib16_support=1
-persist.vendor.radio.custom_ecc=1
-persist.vendor.radio.rat_on=combine
-persist.vendor.radio.procedure_bytes=SKIP
-persist.vendor.radio.data_ltd_sys_ind=1
-persist.vendor.radio.data_con_rprt=1
-persist.vendor.radio.multisim_switch_support=true
-persist.vendor.radio.add_power_save=1
+persist.vendor.data.mode=concurrent
+persist.vendor.radio.aosp_usr_pref_sel=true
 persist.vendor.radio.apm_sim_not_pwdn=1
-vendor.rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
+persist.vendor.radio.atfwd.start=true
+persist.vendor.radio.custom_ecc=1
+persist.vendor.radio.enableadvancedscan=false
+persist.vendor.radio.procedure_bytes=SKIP
+persist.vendor.radio.rat_on=combine
+persist.vendor.radio.sib16_support=1
+rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
+ro.com.android.dataroaming=false
+ro.telephony.default_network=20,20
+ro.telephony.iwlan_operation_mode=legacy
+ro.vendor.use_data_netmgrd=true
 
 # Sensor
 ro.vendor.qti.sdk.sensors.gestures=false
