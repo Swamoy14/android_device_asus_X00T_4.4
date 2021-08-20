@@ -65,16 +65,34 @@ function blob_fixup() {
     case "${1}" in
     
     product/lib64/libdpmframework.so)
-        patchelf --add-needed libdpmframework_shim.so "${2}"
+        "${PATCHELF}" --add-needed libdpmframework_shim.so "${2}"
         ;;
 
     # Load vndk 29 libprotobuf
     vendor/lib64/libwvhidl.so | vendor/lib64/libvendor.goodix.hardware.fingerprint@1.0-service.so)
-        patchelf --replace-needed "libprotobuf-cpp-lite.so" "libprotobuf-cpp-lite-v29.so" "${2}"
+        "${PATCHELF}" --replace-needed "libprotobuf-cpp-lite.so" "libprotobuf-cpp-lite-v29.so" "${2}"
         ;;
 
     vendor/lib64/libril-qc-hal-qmi.so | vendor/lib64/libsettings.so)
-        patchelf --replace-needed "libprotobuf-cpp-full.so" "libprotobuf-cpp-full-v29.so" "${2}"
+        "${PATCHELF}" --replace-needed "libprotobuf-cpp-full.so" "libprotobuf-cpp-full-v29.so" "${2}"
+        ;;
+        
+    # Remove android.hidl.base dependency
+    system/lib64/libwfdnative.so | system/lib/libwfdnative.so)
+        "${PATCHELF}" --remove-needed "android.hidl.base@1.0.so" "${2}"
+        ;;
+        
+    system/lib/libwfdaudioclient.so)
+        "${PATCHELF}" --set-soname "libwfdaudioclient.so" "${2}"
+        ;;
+
+    system/lib/libwfdmediautils.so)
+        "${PATCHELF}" --set-soname "libwfdmediautils.so" "${2}"
+        ;;
+
+    system/lib/libwfdmmsink.so)
+        "${PATCHELF}" --add-needed "libwfdaudioclient.so" "${2}"
+        "${PATCHELF}" --add-needed "libwfdmediautils.so" "${2}"
         ;;
 
     esac
